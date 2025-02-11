@@ -58,8 +58,22 @@ function setup(){
     // barColor = color(125,200,30);
     // textCol=color(255,255,255)
 
-    charts.push(new BarChart(cleanedData,"Age_Group","Female",500,500,3,75,600,20,10,20,5,10))
-    charts.push(new BarChart(cleanedData,"Age_Group","Male",1000,750,5,700,1000,30,10,25,10,30))
+    charts.push(new BarChart({
+        data:cleanedData,
+        xVal:"Age_Group",
+        yVal:"Female",
+        chartWidth:500,
+        chartHeight:500,
+        chartWeight:3,
+        chartPosX:75,
+        chartPosY:600,
+        barWidth:20,
+        margin:30,
+        fontSize:20,
+        incrementNum:5,
+        incrementWidth:10}))
+
+    // charts.push(new BarChart(cleanedData,"Age_Group","Male",1000,750,5,700,1000,30,10,25,10,30))
 }
 
 

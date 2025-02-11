@@ -1,25 +1,25 @@
 class BarChart{
-    constructor(_data,_xVal,_yVal,_chartWidth,_chartHeight,_chartWeight,_chartPosX,_chartPosY,_barWidth,_margin,_fontSize,_incrementNum,_incrementWidth){
-        this.data = _data
-        this.chartPosX = _chartPosX;
-        this.xVal = _xVal
-        this.yVal = _yVal
-        this.chartPosY = _chartPosY;
-        this.chartWidth = _chartWidth;
-        this.chartHeight = _chartHeight;
-        this.barWidth = _barWidth;
-        this.margin = _margin;
-        this.chartWeight = _chartWeight;
+    constructor(obj){
+        this.data = obj.data
+        this.xVal = obj.xVal;
+        this.yVal = obj.yVal;
+        this.chartPosX = obj.chartPosX;
+        this.chartPosY = obj.chartPosY;
+        this.chartWidth = obj.chartWidth || 30;
+        this.chartHeight = obj.chartHeight ||400;
+        this.barWidth = obj.barWidth ||30;
+        this.margin = obj.margin ||30;
+        this.chartWeight = obj.chartWeight || 3;
         this.axisColor = color(0,0,0);
 
         this.gap = (this.chartWidth - (this.data.length*this.barWidth)-(this.margin*2))/(this.data.length-1);
         this.scaler = this.chartHeight/(max(this.data.map(row => row[this.yVal])));
 
         this.barColor = color(125,200,30);
-        this.fontSize = _fontSize;
+        this.fontSize = obj.fontSize;
         this.textCol = color(255,255,255);
-        this.incrementNum = _incrementNum;
-        this.incrementWidth=_incrementWidth;
+        this.incrementNum = obj.incrementNum || 5;
+        this.incrementWidth=obj.incrementWidth || 5;
     }
 
     renderBars(){
