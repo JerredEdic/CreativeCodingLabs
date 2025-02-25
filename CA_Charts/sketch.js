@@ -16,9 +16,11 @@ function preload(){
 function setup(){
     for (let i = 0; i<data.rows.length;i++){
         cleanedData.push(data.rows[i].obj)
-        cleanedDataP.push(dataP.rows[i].obj)
     }
 
+    for (let i = 0; i<dataP.rows.length;i++){
+        cleanedDataP.push(dataP.rows[i].obj)
+    }
 
     createCanvas(2400,2400);
     
@@ -44,14 +46,14 @@ function setup(){
         data:cleanedDataP,
         xVal:"Name",
         yVal:"HP",
-        chartWidth:500,
-        chartHeight:500,
+        chartWidth:700,
+        chartHeight:800,
         chartWeight:3,
-        chartPosX:300,
-        chartPosY:1500,
+        chartPosX:400,
+        chartPosY:1800,
         barWidth:30,
         margin:30,
-        fontSize:20,
+        fontSize:30,
         incrementNum:5,
         incrementWidth:10,
         numBars:11,

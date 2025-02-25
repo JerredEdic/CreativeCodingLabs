@@ -12,14 +12,24 @@ class HorizontalChart{
         this.chartWeight = obj.chartWeight || 3;
 
         this.numBars = obj.numBars || 5;
+        this.startId = obj.start || 0;
+
+        this.cutData = this.startId+this.numBars
 
         this.title = obj.title || this.yVal +" Chart";
         this.titleSize = obj.titleSize || 30;
 
         this.axisColor = color(0,0,0);
 
-        this.gap = (this.chartWidth - (this.numBars*this.barWidth)-(this.margin*2))/(this.numBars-1);
-        this.scaler = this.chartHeight/(max(this.data.map(row => row[this.yVal])));
+        this.gap = (this.chartHeight - (this.numBars*this.barWidth)-(this.margin*2))/(this.numBars-1);
+
+        this.cleaner = []
+
+        for (let i=this.startId;i<this.cutData;i++){
+            this.cleaner.push(this.data[i])
+        }
+
+        this.scaler = this.chartWidth/(max(this.cleaner.map(row => row[this.yVal])));
 
         this.barColor = color(125,200,30);
         this.fontSize = obj.fontSize;
@@ -41,7 +51,7 @@ class HorizontalChart{
                         noStroke();
                         push()
                             fill(this.barColor)
-                            rect(-((this.barWidth+this.gap)*i),0,-this.barWidth,-this.data[i][this.yVal]*this.scaler)
+                            rect(-((this.barWidth+this.gap)*i),0,-this.barWidth,-this.cleaner[i][this.yVal]*this.scaler)
                         pop()                    
                 }
             pop();
@@ -95,7 +105,7 @@ class HorizontalChart{
                     rotate(45)
                     textAlign(LEFT,CENTER);
                     textSize(this.fontSize);
-                    text((max(this.data.map(row => row[this.yVal]))*(i/this.incrementNum)),0,0);
+                    text((max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),0,0);
                 pop();
             }
         pop();
@@ -117,7 +127,7 @@ class HorizontalChart{
                     textSize(this.fontSize);
                     fill(this.textCol);
                     stroke(this.barWidth/2);
-                    text(this.data[i][this.xVal],0,-(this.gap+this.barWidth)*i)
+                    text(this.cleaner[i][this.xVal],0,-(this.gap+this.barWidth)*i)
                 }
             pop();
 
