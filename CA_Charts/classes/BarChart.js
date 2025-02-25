@@ -10,9 +10,15 @@ class BarChart{
         this.barWidth = obj.barWidth ||30;
         this.margin = obj.margin ||30;
         this.chartWeight = obj.chartWeight || 3;
+
+        this.numBars = obj.numBars || 5;
+
+        this.title = obj.title || this.yVal +" Chart";
+        this.titleSize = obj.titleSize || 30;
+
         this.axisColor = color(0,0,0);
 
-        this.gap = (this.chartWidth - (this.data.length*this.barWidth)-(this.margin*2))/(this.data.length-1);
+        this.gap = (this.chartWidth - (this.numBars*this.barWidth)-(this.margin*2))/(this.numBars-1);
         this.scaler = this.chartHeight/(max(this.data.map(row => row[this.yVal])));
 
         this.barColor = color(125,200,30);
@@ -30,13 +36,11 @@ class BarChart{
             push();
                 translate(this.margin,0);
                 
-                for(let i=0; i<this.data.length;i++){
+                for(let i=0; i<this.numBars;i++){
                         noStroke();
                         push()
                         fill(this.barColor)
                         rect(((this.barWidth+this.gap)*i),0,this.barWidth,-this.data[i][this.yVal]*this.scaler)
-                        textSize(this.fontSize);
-                        fill(this.textCol);
                         pop()                    
                 }
             pop();
@@ -51,6 +55,11 @@ class BarChart{
             strokeWeight(this.chartWeight);
             line(0,0,this.chartWidth,0);
             line(0,0,0,-this.chartHeight);
+
+            textSize(this.titleSize);
+            fill(this.textCol);
+            stroke(this.titleSize/3);
+            text(this.title, this.chartWidth/3,-(this.chartHeight+this.gap))
         pop();
     }
 
@@ -75,8 +84,9 @@ class BarChart{
             for(let i=0;i<=this.incrementNum;i++){
                 line(-this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)),this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)))
                 noStroke();
+                textAlign(RIGHT,CENTER);
                 textSize(this.fontSize);
-                text(i,-this.incrementWidth*(this.scaler*2),-(i*(this.chartHeight/this.incrementNum)))
+                text((max(this.data.map(row => row[this.yVal]))*(i/this.incrementNum)),-this.incrementWidth*2,-(i*(this.chartHeight/this.incrementNum)))
             }
         pop();
     }
@@ -93,21 +103,19 @@ class BarChart{
             push();
                 translate(this.margin,0);
                 
-                for(let i=0; i<this.data.length;i++){
-                    if(this.data[i][this.yVal]>0){
-                        noStroke();
-                        push()
-                        textSize(this.fontSize);
-                        fill(this.textCol);
+                for(let i=0; i<this.numBars;i++){
+                    noStroke();
+                    push()
+                    textSize(this.fontSize);
+                    fill(this.textCol);
 
-                            push();
-                                stroke(this.barWidth/2);
-                                translate(((this.barWidth+this.gap)*i),20)
-                                rotate(45)
-                                text(this.data[i][this.xVal],0,0)
-                            pop();
-                        pop()
-                    }
+                        push();
+                            stroke(this.barWidth/2);
+                            translate(((this.barWidth+this.gap)*i),20)
+                            rotate(45)
+                            text(this.data[i][this.xVal],0,0)
+                        pop();
+                    pop()
                 }
             pop();
 
