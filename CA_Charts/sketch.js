@@ -1,6 +1,6 @@
 
 
-// let R = "Rhed";
+let R = ["hi","howdy"];
 let cleanedData = [];
 let cleanedDataP = [];
 
@@ -27,9 +27,9 @@ function setup(){
     angleMode(DEGREES);
 
     charts.push(new BarChart({
-        data:cleanedData,
-        xVal:"Age_Group",
-        yVal:"Male",
+        data:cleanedDataP,
+        xVal:"Name",
+        yVal:"Attack",
         chartWidth:500,
         chartHeight:500,
         chartWeight:3,
@@ -40,7 +40,14 @@ function setup(){
         fontSize:20,
         incrementNum:5,
         incrementWidth:10,
-        numBars:cleanedData.length}))
+        barWidth:30,
+        margin:30,
+        fontSize:30,
+        incrementNum:5,
+        incrementWidth:10,
+        numBars:10,
+        titleSize:50,
+        title:"Pokemon Attack Stats"}))
 
     charts.push(new HorizontalChart({
         data:cleanedDataP,
@@ -60,6 +67,24 @@ function setup(){
         titleSize:50,
         title:"Pokemon HP Stats"
     }))
+
+    charts.push(new StackedChart({
+        data:cleanedDataP,
+        xVal:"Name",
+        yVal:["HP","Attack","Speed"],
+        chartWidth:500,
+        chartHeight:500,
+        chartWeight:3,
+        chartPosX:1000,
+        chartPosY:600,
+        barWidth:30,
+        margin:30,
+        fontSize:30,
+        incrementNum:5,
+        incrementWidth:10,
+        numBars:11,
+        titleSize:50
+    }))
 }
 
 
@@ -67,6 +92,8 @@ function draw(){
     background(125,125,125);
     
     charts.forEach(row=>{row.renderBars();row.renderAxis();row.renderIncrements();row.renderLabels();row.renderIncLabels()})
+
+    
     
 }
 

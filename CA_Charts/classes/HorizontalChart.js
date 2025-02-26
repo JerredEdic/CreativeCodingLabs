@@ -100,7 +100,7 @@ class HorizontalChart{
                 push();
                     textSize(this.fontSize);
                     fill(this.textCol);
-                    stroke(this.barWidth/2);
+                    stroke(this.fontSize/3);
                     translate((i*(this.chartWidth/this.incrementNum))-5,this.incrementWidth*3)
                     rotate(45)
                     textAlign(LEFT,CENTER);
