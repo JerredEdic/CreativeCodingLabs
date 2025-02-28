@@ -27,17 +27,17 @@ class StackedChart{
         this.title = obj.title || "Default"
         this.titleSize = obj.titleSize || 30;
 
-        this.axisColor = color(0,0,0);
+        this.axisColor = obj.axisColor||color(0,0,0);
 
         this.gap = (this.chartWidth - (this.numBars*this.barWidth)-(this.margin*2))/(this.numBars-1);
         
 
-        this.barColors = obj.barColors;
-        this.barColor = color(125,200,30);
+        this.barColors = obj.barColors||["#E6e6fa","#40E0D0"];
         this.fontSize = obj.fontSize;
-        this.textCol = color(255,255,255);
+        this.textCol = obj.textCol||color(255,255,255);
         this.incrementNum = obj.incrementNum || 5;
         this.incrementWidth=obj.incrementWidth || 5;
+        this.incColor = obj.incColor||color(0,0,0);
         
         this.yArray=[]
         if (Array.isArray(this.yVal)==false && this.y1Val!=undefined && this.y2Val!=undefined)
@@ -143,7 +143,7 @@ class StackedChart{
     renderIncrements(){
         push();
             translate(this.chartPosX,this.chartPosY);
-            stroke(this.axisColor);
+            stroke(this.incColor);
             strokeWeight(this.chartWeight);
 
             for(let i=0;i<=this.incrementNum;i++){
@@ -155,10 +155,7 @@ class StackedChart{
     renderIncLabels(){
         push();
             translate(this.chartPosX,this.chartPosY);
-            stroke(this.axisColor);
-            strokeWeight(this.chartWeight);
             for(let i=0;i<=this.incrementNum;i++){
-                line(-this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)),this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)))
 
                 textAlign(RIGHT,CENTER);
                 textSize(this.fontSize);

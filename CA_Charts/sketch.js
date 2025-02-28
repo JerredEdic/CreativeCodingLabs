@@ -47,6 +47,7 @@ function setup(){
         incrementWidth:10,
         numBars:10,
         titleSize:50,
+        axisColor:"#00008b",
         barColors:["#E6e6fa","#40E0D0"],
         title:"Pokemon Attack Stats"}))
 
@@ -64,7 +65,7 @@ function setup(){
         fontSize:30,
         incrementNum:5,
         incrementWidth:10,
-        numBars:11,
+        numBars:13,
         titleSize:50,
         title:"Pokemon HP Stats"
     }))
@@ -75,19 +76,20 @@ function setup(){
         yVal:"Speed",
         y1Val:"Attack",
         y2Val:"HP",
-        chartWidth:500,
+        chartWidth:700,
         chartHeight:550,
         chartWeight:3,
-        chartPosX:1500,
-        chartPosY:920,
-        barWidth:50,
+        chartPosX:1000,
+        chartPosY:700,
+        barWidth:70,
         margin:30,
         fontSize:30,
         incrementNum:12,
         incrementWidth:10,
-        numBars:4,
+        numBars:6,
         titleSize:50,
         title:"The Chart",
+        incColor:"#00008b",
         barColors:["#Ffd700","#880808","#40E0D0"],
         start:24
     }))

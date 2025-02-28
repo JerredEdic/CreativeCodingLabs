@@ -29,16 +29,17 @@ class BarChart{
         this.title = obj.title || this.yVal +" Chart";
         this.titleSize = obj.titleSize || 30;
 
-        this.axisColor = color(0,0,0);
+        this.axisColor = obj.axisColor||color(0,0,0);
 
         this.gap = (this.chartWidth - (this.numBars*this.barWidth)-(this.margin*2))/(this.numBars-1);
         this.scaler = this.chartHeight/(max(this.cleaner.map(row => row[this.yVal])));
 
         this.barColors = obj.barColors||[color(125,200,30)];
         this.fontSize = obj.fontSize;
-        this.textCol = color(255,255,255);
+        this.textCol = obj.textCol||color(255,255,255);
         this.incrementNum = obj.incrementNum || 5;
         this.incrementWidth=obj.incrementWidth || 5;
+        this.incColor = obj.incColor||color(0,0,0);
     }
 
     renderBars(){
@@ -79,10 +80,11 @@ class BarChart{
     renderIncrements(){
         push();
             translate(this.chartPosX,this.chartPosY);
-            stroke(this.axisColor);
+            stroke(this.incColor);
             strokeWeight(this.chartWeight);
 
             for(let i=0;i<=this.incrementNum;i++){
+                
                 line(-this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)),this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)))
             }
         pop();
@@ -91,12 +93,7 @@ class BarChart{
     renderIncLabels(){
         push();
             translate(this.chartPosX,this.chartPosY);
-            stroke(this.axisColor);
-            strokeWeight(this.chartWeight);
-
             for(let i=0;i<=this.incrementNum;i++){
-                line(-this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)),this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)))
-
                 textAlign(RIGHT,CENTER);
                 textSize(this.fontSize);
                 stroke(this.fontSize/3);
@@ -109,10 +106,6 @@ class BarChart{
     renderLabels(){
         push();
             translate(this.chartPosX,this.chartPosY);
-            stroke(this.axisColor);
-            strokeWeight(this.chartWeight);
-            line(0,0,this.chartWidth,0);
-            line(0,0,0,-this.chartHeight);
             
 
             push();

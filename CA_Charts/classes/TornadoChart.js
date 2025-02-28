@@ -1,8 +1,9 @@
-class HorizontalChart{
+class TornadoChart{
     constructor(obj){
         this.data = obj.data
         this.xVal = obj.xVal;
         this.yVal = obj.yVal;
+        this.y1Val = obj.y1Val;
         this.chartPosX = obj.chartPosX;
         this.chartPosY = obj.chartPosY;
         this.chartWidth = obj.chartWidth || 30;
@@ -29,14 +30,44 @@ class HorizontalChart{
             this.cleaner.push(this.data[i])
         }
 
-        this.scaler = this.chartWidth/(max(this.cleaner.map(row => row[this.yVal])));
+        
 
         this.barColors = obj.barColors||[color(125,200,30)];
         this.fontSize = obj.fontSize;
         this.textCol = obj.textCol||color(255,255,255);
         this.incrementNum = obj.incrementNum || 5;
         this.incrementWidth=obj.incrementWidth || 5;
-        this.incColor = obj.incColor||color(0,0,0);
+        
+        this.mid
+
+        this.yArray=[]
+        if (Array.isArray(this.yVal)==false && this.y1Val!=undefined)
+        {
+            this.yArray.push(this.yVal);
+            this.yArray.push(this.y1Val);
+            this.yArray.push(this.y2Val);
+
+            if (this.title=="Default"){
+            this.title =this.yVal+","+this.y1Val +" Tornado Chart";
+            }
+        }
+        else if (this.y1Val!=undefined) {
+            this.yVal.forEach(val => {this.yArray.push(val)});
+            this.yArray.push(this.y1Val);
+
+            if (this.title=="Default"){
+            this.title =this.yVal+","+this.y1Val+" Chart";
+            }
+        }
+        else {
+            this.yVal.forEach(val => {this.yArray.push(val)});
+
+            if (this.title=="Default"){
+            this.title =this.yVal+" Chart";
+            }
+        }
+        this.total
+        this.scaler = this.chartHeight/max(this.total);
     }
 
     renderBars(){
@@ -79,7 +110,7 @@ class HorizontalChart{
     renderIncrements(){
         push();
             translate(this.chartPosX,this.chartPosY);
-            stroke(this.incColor);
+            stroke(this.axisColor);
             strokeWeight(this.chartWeight);
 
             for(let i=0;i<=this.incrementNum;i++){
@@ -94,16 +125,18 @@ class HorizontalChart{
     renderIncLabels(){
         push();
             translate(this.chartPosX,this.chartPosY);
+            stroke(this.axisColor);
+            strokeWeight(this.chartWeight);
 
             for(let i=0;i<=this.incrementNum;i++){
                 push();
-                    
+                    textSize(this.fontSize);
+                    fill(this.textCol);
+                    stroke(this.fontSize/3);
                     translate((i*(this.chartWidth/this.incrementNum))-5,this.incrementWidth*3)
                     rotate(45)
                     textAlign(LEFT,CENTER);
                     textSize(this.fontSize);
-                    fill(this.textCol);
-                    stroke(this.fontSize/2);
                     text((max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),0,0);
                 pop();
             }
