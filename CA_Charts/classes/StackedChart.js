@@ -51,12 +51,13 @@ class StackedChart{
             }
         }
         else if (this.y1Val!=undefined && this.y2Val!=undefined) {
-            this.yVal.forEach(val => {this.yArray.push(this.data[val])});
+            this.yVal.forEach(val => {this.yArray.push(val)});
             this.yArray.push(this.y1Val);
             this.yArray.push(this.y2Val);
 
-            if (this.title=="Default"){}
+            if (this.title=="Default"){
             this.title =this.yVal+","+this.y1Val+","+this.y2Val +" Chart";
+            }
         }
         else if (this.y1Val!=undefined) {
             this.yVal.forEach(val => {this.yArray.push(val)});
@@ -136,6 +137,7 @@ class StackedChart{
             textSize(this.titleSize);
             fill(this.textCol);
             stroke(this.titleSize/3);
+            textAlign(CENTER,CENTER)
             text(this.title, this.chartWidth/3,-(this.chartHeight+this.gap))
         pop();
     }
@@ -157,10 +159,11 @@ class StackedChart{
             translate(this.chartPosX,this.chartPosY);
             for(let i=0;i<=this.incrementNum;i++){
 
+                
+                fill(this.textCol);
                 textAlign(RIGHT,CENTER);
                 textSize(this.fontSize);
-                stroke(this.fontSize/3);
-                fill(this.textCol);
+                stroke(this.barWidth/2);
                 text(int(max(this.total)*(i/this.incrementNum)),-this.incrementWidth*2,-(i*(this.chartHeight/this.incrementNum)))
             }
         pop();
@@ -180,7 +183,6 @@ class StackedChart{
                 translate(this.margin,0);
                 
                 for(let i=0; i<this.numBars;i++){
-                    noStroke();
                     push()
                     textSize(this.fontSize);
                     fill(this.textCol);

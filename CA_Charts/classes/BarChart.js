@@ -112,7 +112,6 @@ class BarChart{
                 translate(this.margin,0);
                 
                 for(let i=0; i<this.numBars;i++){
-                    noStroke();
                     push()
                     textSize(this.fontSize);
                     fill(this.textCol);

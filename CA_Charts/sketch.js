@@ -73,13 +73,13 @@ function setup(){
     charts.push(new StackedChart({
         data:cleanedDataP,
         xVal:"Name",
-        yVal:"Speed",
+        yVal:["Speed","Defense","Sp_Def","Sp_Atk"],
         y1Val:"Attack",
         y2Val:"HP",
         chartWidth:700,
         chartHeight:550,
         chartWeight:3,
-        chartPosX:1000,
+        chartPosX:1100,
         chartPosY:700,
         barWidth:70,
         margin:30,
@@ -93,6 +93,28 @@ function setup(){
         barColors:["#Ffd700","#880808","#40E0D0"],
         start:24
     }))
+
+    charts.push(new TornadoChart({
+        data:cleanedDataP,
+        xVal:"Name",
+        yVal:"HP",
+        y1Val:"Speed",
+        chartWidth:600,
+        chartHeight:600,
+        chartWeight:3,
+        chartPosX:1500,
+        chartPosY:1800,
+        barWidth:30,
+        margin:30,
+        fontSize:30,
+        incrementNum:5,
+        incrementWidth:10,
+        numBars:8,
+        titleSize:50,
+        title:"HP to Speed comparison",
+        start:100
+    }))
+
     noLoop()
 }
 
