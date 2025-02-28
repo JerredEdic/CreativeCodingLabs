@@ -192,7 +192,7 @@ class TornadoChart{
                     rotate(45)
                     textAlign(LEFT,CENTER);
                     textSize(this.fontSize);
-                    text((max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),0,0);
+                    text(int(max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),0,0);
                 pop();
 
                 push();
@@ -203,7 +203,7 @@ class TornadoChart{
                     rotate(45)
                     textAlign(LEFT,CENTER);
                     textSize(this.fontSize);
-                    text((max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),0,0);
+                    text(int(max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),0,0);
                 pop();
             }
         pop();

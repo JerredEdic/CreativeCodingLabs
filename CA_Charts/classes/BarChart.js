@@ -98,7 +98,7 @@ class BarChart{
                 textSize(this.fontSize);
                 stroke(this.fontSize/3);
                 fill(this.textCol);
-                text((max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),-this.incrementWidth*2,-(i*(this.chartHeight/this.incrementNum)))
+                text(int(max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),-this.incrementWidth*2,-(i*(this.chartHeight/this.incrementNum)))
             }
         pop();
     }

@@ -104,7 +104,7 @@ class HorizontalChart{
                     textSize(this.fontSize);
                     fill(this.textCol);
                     stroke(this.fontSize/2);
-                    text((max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),0,0);
+                    text(int(max(this.cleaner.map(row => row[this.yVal]))*(i/this.incrementNum)),0,0);
                 pop();
             }
         pop();
