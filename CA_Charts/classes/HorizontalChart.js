@@ -31,7 +31,7 @@ class HorizontalChart{
 
         this.scaler = this.chartWidth/(max(this.cleaner.map(row => row[this.yVal])));
 
-        this.barColor = color(125,200,30);
+        this.barColors = obj.barColors||[color(125,200,30)];
         this.fontSize = obj.fontSize;
         this.textCol = color(255,255,255);
         this.incrementNum = obj.incrementNum || 5;
@@ -50,7 +50,7 @@ class HorizontalChart{
                 for(let i=0; i<this.numBars;i++){
                         noStroke();
                         push()
-                            fill(this.barColor)
+                        fill(this.barColors[i%this.barColors.length])
                             rect(-((this.barWidth+this.gap)*i),0,-this.barWidth,-this.cleaner[i][this.yVal]*this.scaler)
                         pop()                    
                 }

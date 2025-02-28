@@ -32,7 +32,7 @@ class StackedChart{
         this.gap = (this.chartWidth - (this.numBars*this.barWidth)-(this.margin*2))/(this.numBars-1);
         
 
-        this.colors = obj.colors;
+        this.barColors = obj.barColors;
         this.barColor = color(125,200,30);
         this.fontSize = obj.fontSize;
         this.textCol = color(255,255,255);
@@ -42,35 +42,44 @@ class StackedChart{
         this.yArray=[]
         if (Array.isArray(this.yVal)==false && this.y1Val!=undefined && this.y2Val!=undefined)
         {
-            this.yArray.push(this.data[this.yVal]);
-            this.yArray.push(this.data[this.y1Val]);
-            this.yArray.push(this.data[this.y2Val]);
+            this.yArray.push(this.yVal);
+            this.yArray.push(this.y1Val);
+            this.yArray.push(this.y2Val);
 
+            if (this.title=="Default"){
             this.title =this.yVal+","+this.y1Val+","+this.y2Val +" Chart";
+            }
         }
         else if (this.y1Val!=undefined && this.y2Val!=undefined) {
             this.yVal.forEach(val => {this.yArray.push(this.data[val])});
             this.yArray.push(this.y1Val);
             this.yArray.push(this.y2Val);
 
+            if (this.title=="Default"){}
             this.title =this.yVal+","+this.y1Val+","+this.y2Val +" Chart";
         }
         else if (this.y1Val!=undefined) {
             this.yVal.forEach(val => {this.yArray.push(val)});
             this.yArray.push(this.y1Val);
 
+            if (this.title=="Default"){
             this.title =this.yVal+","+this.y1Val+" Chart";
+            }
         }
         else if (this.y2Val!=undefined) {
             this.yVal.forEach(val => {this.yArray.push(val)});
             this.yArray.push(this.y2Val);
 
+            if (this.title=="Default"){
             this.title =this.yVal+","+this.y2Val +" Chart";
+            }
         }
         else {
             this.yVal.forEach(val => {this.yArray.push(val)});
 
+            if (this.title=="Default"){
             this.title =this.yVal+" Chart";
+            }
         }
 
         this.total = []
@@ -95,7 +104,6 @@ class StackedChart{
 
             push();
                 translate(this.margin,0);
-                line(this.chartWidth,-((this.cleaner[3].HP*this.scaler)+(this.cleaner[3].Attack*this.scaler)),this.chartWidth,-(((this.cleaner[3].HP*this.scaler)+(this.cleaner[3].Attack*this.scaler))+500));
                 noStroke();
                         push()
                         
@@ -103,7 +111,7 @@ class StackedChart{
                             this.underBar = 0
                             for (let j=0; j<this.yArray.length;j++){
                                 
-                                fill(this.colors[j%this.colors.length])
+                                fill(this.barColors[j%this.barColors.length])
 
                                 rect(((this.barWidth+this.gap)*i),-this.underBar,this.barWidth,-((this.cleaner[i][this.yArray[j]]*this.scaler)))
 

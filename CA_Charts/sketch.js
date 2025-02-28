@@ -47,6 +47,7 @@ function setup(){
         incrementWidth:10,
         numBars:10,
         titleSize:50,
+        barColors:["#E6e6fa","#40E0D0"],
         title:"Pokemon Attack Stats"}))
 
     charts.push(new HorizontalChart({
@@ -71,7 +72,9 @@ function setup(){
     charts.push(new StackedChart({
         data:cleanedDataP,
         xVal:"Name",
-        yVal:["HP","Attack","Speed"],
+        yVal:"Speed",
+        y1Val:"Attack",
+        y2Val:"HP",
         chartWidth:500,
         chartHeight:550,
         chartWeight:3,
@@ -84,7 +87,8 @@ function setup(){
         incrementWidth:10,
         numBars:4,
         titleSize:50,
-        colors:["#Ffd700","#880808","#40E0D0"],
+        title:"The Chart",
+        barColors:["#Ffd700","#880808","#40E0D0"],
         start:24
     }))
     noLoop()
