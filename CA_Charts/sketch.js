@@ -73,18 +73,21 @@ function setup(){
         xVal:"Name",
         yVal:["HP","Attack","Speed"],
         chartWidth:500,
-        chartHeight:500,
+        chartHeight:550,
         chartWeight:3,
-        chartPosX:1000,
-        chartPosY:600,
-        barWidth:30,
+        chartPosX:1500,
+        chartPosY:920,
+        barWidth:50,
         margin:30,
         fontSize:30,
-        incrementNum:5,
+        incrementNum:12,
         incrementWidth:10,
-        numBars:11,
-        titleSize:50
+        numBars:4,
+        titleSize:50,
+        colors:["#Ffd700","#880808","#40E0D0"],
+        start:24
     }))
+    noLoop()
 }
 
 

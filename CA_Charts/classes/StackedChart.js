@@ -32,6 +32,7 @@ class StackedChart{
         this.gap = (this.chartWidth - (this.numBars*this.barWidth)-(this.margin*2))/(this.numBars-1);
         
 
+        this.colors = obj.colors;
         this.barColor = color(125,200,30);
         this.fontSize = obj.fontSize;
         this.textCol = color(255,255,255);
@@ -83,7 +84,8 @@ class StackedChart{
             this.addUp = 0;
         }
 
-        this.scaler = this.chartHeight/(max(this.total));
+        this.scaler = this.chartHeight/max(this.total);
+
     }
 
     renderBars(){
@@ -93,36 +95,27 @@ class StackedChart{
 
             push();
                 translate(this.margin,0);
+                line(this.chartWidth,-((this.cleaner[3].HP*this.scaler)+(this.cleaner[3].Attack*this.scaler)),this.chartWidth,-(((this.cleaner[3].HP*this.scaler)+(this.cleaner[3].Attack*this.scaler))+500));
                 noStroke();
                         push()
-                        // fill(this.barColor)
-                        // for(let i=0; i<this.numBars;i++){
-                        //     rect(((this.barWidth+this.gap)*i),0,this.barWidth,-parseInt(this.cleaner[i][this.yArray[1]])*this.scaler);
-                        // }
-                        this.colors=["Ffd700",""]
+                        
                         for(let i=0; i<this.numBars;i++){
-                            
+                            this.underBar = 0
                             for (let j=0; j<this.yArray.length;j++){
-                                fill(this.colors[j%2])
-                                if(j>0){
-                                    this.underBar = 0
-                                    for (let k=0;k<j-1;k++){
-                                        this.underBar = this.underBar + (parseInt(this.cleaner[i][this.yArray[k]])*this.scaler)
-                                    }
-
-                                    rect(((this.barWidth+this.gap)*i),-parseInt(this.cleaner[i][this.yArray[j-1]])*this.scaler,this.barWidth,-((parseInt(this.cleaner[i][this.yArray[j]])*this.scaler)+(this.underBar)));
-                                }
-                                else{
-                                    rect(((this.barWidth+this.gap)*i),0,this.barWidth,-parseInt(this.cleaner[i][this.yArray[j]])*this.scaler);
-                                }
                                 
+                                fill(this.colors[j%this.colors.length])
+
+                                rect(((this.barWidth+this.gap)*i),-this.underBar,this.barWidth,-((this.cleaner[i][this.yArray[j]]*this.scaler)))
+
+                                this.underBar+=this.cleaner[i][this.yArray[j]]*this.scaler;
+
                             }
                         }
-                pop() 
-            pop();
+                    pop() 
+                pop();
 
-        pop();
-    }
+            pop();
+        }
 
     renderAxis(){
         push();
@@ -156,15 +149,17 @@ class StackedChart{
             translate(this.chartPosX,this.chartPosY);
             stroke(this.axisColor);
             strokeWeight(this.chartWeight);
-
             for(let i=0;i<=this.incrementNum;i++){
                 line(-this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)),this.incrementWidth,-(i*(this.chartHeight/this.incrementNum)))
-                noStroke();
+
                 textAlign(RIGHT,CENTER);
                 textSize(this.fontSize);
+                stroke(this.fontSize/3);
+                fill(this.textCol);
                 text(int(max(this.total)*(i/this.incrementNum)),-this.incrementWidth*2,-(i*(this.chartHeight/this.incrementNum)))
             }
         pop();
+        
     }
 
     renderLabels(){
