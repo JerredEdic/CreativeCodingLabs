@@ -139,6 +139,21 @@ class StackedChart{
             stroke(this.titleSize/3);
             textAlign(CENTER,CENTER)
             text(this.title, this.chartWidth/3,-(this.chartHeight+this.gap))
+
+            for (let j=0; j<this.yArray.length;j++){
+                                
+                fill(this.barColors[j%this.barColors.length])
+
+                rect(this.chartWidth+this.gap,-(j*(this.chartHeight/this.barColors.length)),this.barWidth,this.barWidth)
+
+                
+                fill(this.textCol);
+                stroke(this.textSize/3);
+                textAlign(LEFT,BOTTOM);
+                textSize(this.textSize);
+                text(this.yArray[j],(this.chartWidth+this.gap),-((j*(this.chartHeight/this.barColors.length))))
+
+            }
         pop();
     }
 

@@ -139,6 +139,21 @@ class TornadoChart{
             stroke(this.titleSize/3);
             textAlign(CENTER);
             text(this.title, this.chartWidth/2,-(this.chartHeight+this.gap))
+
+            for (let j=0; j<this.yArray.length;j++){
+                                
+                fill(this.barColors[j%this.barColors.length])
+
+                rect(this.chartWidth+this.gap,-(j*(this.chartHeight/this.barColors.length)),this.barWidth*2,this.barWidth*2)
+
+                
+                fill(this.textCol);
+                stroke(this.textSize/3);
+                textAlign(LEFT,BOTTOM);
+                textSize(this.textSize);
+                text(this.yArray[j],(this.chartWidth+this.gap),-((j*(this.chartHeight/this.barColors.length))))
+
+            }
         pop();
     }
 

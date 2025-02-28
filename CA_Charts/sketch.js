@@ -73,7 +73,7 @@ function setup(){
     charts.push(new StackedChart({
         data:cleanedDataP,
         xVal:"Name",
-        yVal:["Speed","Defense","Sp_Def","Sp_Atk"],
+        yVal:["Speed","Defense"],
         y1Val:"Attack",
         y2Val:"HP",
         chartWidth:700,
