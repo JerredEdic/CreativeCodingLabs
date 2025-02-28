@@ -114,8 +114,6 @@ function setup(){
         title:"HP to Speed comparison",
         start:100
     }))
-
-    noLoop()
 }
 
 
